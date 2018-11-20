@@ -106,8 +106,6 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   // if(req.body.current) profileFields.experience.current = req.body.current;
   // if(req.body.description) profileFields.experience.description = req.body.description;
 
-
-  if(req.body.handle) profileFields.handle = req.body.handle;
 });
 
 module.exports = router;
