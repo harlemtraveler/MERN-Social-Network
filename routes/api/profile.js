@@ -3,6 +3,9 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 
+// Load Validation
+const validateProfileInput = require('../../validation/profile');
+
 // Load Profile Model
 const Profile = require('../../models/Profile');
 // Load User Model
@@ -21,6 +24,11 @@ router.get('/test', (req, res) => res.json({
 router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
   const errors = {};
   Profile.findOne({ user: req.user.id })
+    // populate() fetches specific fields from Model's Schema via the "ref" name:
+    // the promise will only return the field's "id" by default
+    // Can specify multiple fields by invoking them within a array
+    // Syntax: .populate('ref', ['field1', field2])
+    .populate('user', ['name', 'avatar'])
     .then(profile => {
       if(!profile) {
         errors.noprofile = 'There is no profile for this user';
@@ -35,6 +43,15 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
 // @desc   Create OR Edit user profile
 // @access Private
 router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+
+  const { errors, isValid } = validateProfileInput(req.body);
+
+  // Check validation - (done at the beginning of any validation process)
+  if(!isValid) {
+    // Return any errors with 400 status
+    return res.status(400).json(errors);
+  }
+
   // Get fields
   const profileFields = {};
   profileFields.user = req.user.id;
@@ -47,7 +64,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   if(req.body.githubusername) profileFields.githubusername = req.body.githubusername;
 
   // Skills
-  if(typeOf.req.body.skills !== 'undefined') {
+  if(typeof(req.body.skills) !== 'undefined') {
     // Skills imports as a CSV and is separated by the commas (',') to create an array
     profileFields.skills = req.body.skills.split(',');
   };
@@ -61,7 +78,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   if(req.body.instagram) profileFields.social.instagram = req.body.instagram;
 
   Profile.findOne({ user: req.user.id })
-    .then(profile) => {
+    .then(profile => {
       if(profile) {
         // Update
         Profile.findOneAndUpdate(
@@ -84,7 +101,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
           new Profile(profileFields).save().then(profile => res.json(profile));
         })
       }
-    }
+    })
 
   // // Education
   // profileFields.education = {};
