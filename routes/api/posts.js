@@ -6,8 +6,9 @@ const passport = require('passport');
 // Load Validation - Post
 const validatePostInput = require('../../validation/post');
 
-// Load Models - Post
+// Load Models - Post | Profile
 const Post = require('../../models/Post');
+const Profile = require('../../models/Post');
 
 // @routes GET api/posts/test
 // @desc   Tests posts route
@@ -15,6 +16,25 @@ const Post = require('../../models/Post');
 router.get('/test', (req, res) => res.json({
   msg: '[+] Posts Works'
 }));
+
+// @routes GET api/posts
+// @desc   Get post
+// @access Public
+router.get('/', (req, res) => {
+  Post.find()
+    .sort({ date: -1 })
+    .then(posts => res.json(posts))
+    .catch(err => res.status(404).json({ nopostsfound: '[!] No posts found' }));
+});
+
+// @routes GET api/posts/:id
+// @desc   Get post by id
+// @access Public
+router.get('/:id', (req, res) => {
+  Post.findById(req.params.id)
+    .then(post => res.json(post))
+    .catch(err => res.status(404).json({ nopostfound: '[!] No post found with that ID' }));
+});
 
 // @routes POST api/posts
 // @desc   Create post
@@ -37,5 +57,38 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 
   newPost.save().then(post => res.json(post));
 });
+
+// @routes DELETE api/posts/:id
+// @desc   Delete post
+// @access Private
+router.delete('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Profile.findOne({ user: req.user.id })
+    .then(profile => {
+      Profile.findById(req.params.id)
+        .then(post => {
+          // Check for post owner (used ".toString" method to convert object to String)
+          if(post.user.toString() !== req.user.id) {
+            // Status code 401 is for "unauthorized"
+            return res.status(401).json({ notauthorized: '[!] User not authorized' });
+          }
+
+          // Delete
+          post.remove().then(() => res.json({ success: true }));
+        })
+        .catch(err => res.status(404).json({ nopostfound: '[!] No post found' }));
+    });
+});
+
+// @routes POST api/posts/like/:id
+// @desc   Like post
+// @access Private
+// router.post('/like/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+//   Profile.findOne({ user: req.user.id })
+//     .then(profile => {
+//       Profile.findById(req.params.id)
+//         .then(post => {})
+//         .catch(err => res.status(404).json({ nopostfound: '[!] No post found' }));
+//     });
+// });
 
 module.exports = router;
