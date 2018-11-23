@@ -43,4 +43,16 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 </Router>
 ```
 
-7. 
+7. Create routes to desired paths, as such:
+
+```
+<Route exact path="/" component={ Landing } />
+```
+AND/OR
+```
+<Route exact path="/register" component={ Register } />
+```
+AND/OR
+```
+<Route exact path="/login" component={ Login } />
+```
