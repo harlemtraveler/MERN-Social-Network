@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class Register extends Component {
   constructor() {
@@ -11,8 +12,6 @@ class Register extends Component {
       errors: {}
     };
 
-    // this.onChange = this.onChange.bind(this);
-    // this.onSubmit = this.onSubmit.bind(this);
   }
 
   onChange = (e) => {
@@ -29,7 +28,10 @@ class Register extends Component {
       password2: this.state.password2
     };
 
-    console.log(newUser);
+    axios
+      .post('/api/users/register', newUser)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err.response.data));
 
   }
 
@@ -58,8 +60,7 @@ class Register extends Component {
                       placeholder="Name"
                       name="name"
                       value={ this.state.name }
-                      onChange={ this.onChange }
-                      required />
+                      onChange={ this.onChange } />
                   </div>
 
                   <div className="form-group">
