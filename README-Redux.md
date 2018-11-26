@@ -44,7 +44,7 @@ import { Provider } from 'react-redux';
 </Provider>
 ```
 
-7. Use createStore to handle te app's _reducers_. We'll use a root reducer to hold all of the app's sub-reducers.
+7. Use createStore to handle the app's _reducers_, _preloadedState_. We'll use a root reducer to hold all of the app's sub-reducers.
 
 8. Add the **store** property to the **<Provider>** tag.
 
