@@ -26,7 +26,7 @@ class Register extends Component {
 
   // Runs when component recieves new properties
   componentWillReceiveProps(nextProps) {
-    if(nextProps.errors) {
+    if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
   }

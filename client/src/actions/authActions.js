@@ -1,7 +1,7 @@
 import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 // Decodes (destructures) JWT tokens
-import { jwt_decode } from 'jwt-decode';
+import jwt_decode from 'jwt-decode';
 
 import { GET_ERRORS, SET_CURRENT_USER } from './types';
 
@@ -19,7 +19,8 @@ export const registerUser = (userData, history) => dispatch => {
 
 // Login - Get User Token
 export const loginUser = userData => dispatch => {
-  axios.post('/api/users/login', userData)
+  axios
+    .post('/api/users/login', userData)
     .then(res => {
       // Save to local storage
       const { token } = res.data;
@@ -47,7 +48,7 @@ export const loginUser = userData => dispatch => {
 // Set Logged-in User
 export const setCurrentUser = decoded => {
   return {
-    type: SET_CURRENT_USER;
+    type: SET_CURRENT_USER,
     payload: decoded
   }
 };
