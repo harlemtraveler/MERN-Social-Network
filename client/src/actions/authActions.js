@@ -53,6 +53,18 @@ export const setCurrentUser = decoded => {
   }
 };
 
+// Log user out
+export const logoutUser = () => dispatch => {
+  // Remove token from localStorage
+  localStorage.removeItem('jwtToken');
+
+  // Remove auth header for future request
+  setAuthToken(false);
+
+  // Set current user to {} (an empty object) which'll set isAuthenticated to false
+  dispatch(setCurrentUser({}));
+};
+
 /*
   - When fteching from back-end, we need to wait for response from backend, then we can dispatch
   - The "thunk" middleware will be useful for this (also add "dispatch" to function).

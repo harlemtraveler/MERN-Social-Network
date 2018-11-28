@@ -24,6 +24,12 @@ class Register extends Component {
 
   }
 
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/dashboard');
+    }
+  }
+
   // Runs when component recieves new properties
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
@@ -150,7 +156,7 @@ Register.propTypes = {
 }
 
 // Stores "auth" state from root reducer in a variable so it can be access later, like "this.props.auth.user"
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   // state.auth comes from the root reducer (i.e. index.js within "reducers" dir)
   auth: state.auth,
   errors: state.errors

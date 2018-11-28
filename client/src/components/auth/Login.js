@@ -14,6 +14,12 @@ class Login extends Component {
     };
   }
 
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/dashboard');
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push('/dashboard');
@@ -112,5 +118,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { loginUser })(Login);
-
-// Left of at Lecture 44 @09:20
