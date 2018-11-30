@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-// "withRouter" will allows us to pass actions redirect ability "this.props.history"
-// MUST wrap component name in "withRouter" when exported
-// i.e. "export default withRouter(myComponent)"
 import { withRouter } from 'react-router-dom';
-import classnames from 'classnames';
-// In order to use Redux with a component, import "connect" from 'react-redux'.
-// Also, a contianer is a react component that'll work with Redux.
 import { connect } from 'react-redux';
-// Import the desired "action" to use with this component
 import { registerUser } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
 
@@ -84,18 +77,18 @@ class Register extends Component {
                 <TextFieldGroup
                   placeholder="Name"
                   name="name"
-                  value={this.state.name}
-                  onChange={this.onChange}
-                  error={errors.name}
+                  value={ this.state.name }
+                  onChange={ this.onChange }
+                  error={ errors.name }
                 />
 
                 <TextFieldGroup
                   placeholder="Email"
                   type="email"
                   name="email"
-                  value={this.state.email}
-                  onChange={this.onChange}
-                  error={errors.email}
+                  value={ this.state.email }
+                  onChange={ this.onChange }
+                  error={ errors.email }
                   info="This site uses Gravatar so if you want a profile image, use a Gravatar email."
                 />
 
@@ -103,18 +96,18 @@ class Register extends Component {
                   placeholder="Password"
                   type="password"
                   name="password"
-                  value={this.state.password}
-                  onChange={this.onChange}
-                  error={errors.password}
+                  value={ this.state.password }
+                  onChange={ this.onChange }
+                  error={ errors.password }
                 />
 
                 <TextFieldGroup
                   placeholder="Confirm Password"
                   type="password"
                   name="password2"
-                  value={this.state.password2}
-                  onChange={this.onChange}
-                  error={errors.password2}
+                  value={ this.state.password2 }
+                  onChange={ this.onChange }
+                  error={ errors.password2 }
                 />
 
                 <input
@@ -146,15 +139,41 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, { registerUser })(withRouter(Register));
 
+
+
+
 /*
-  NOTICE:
-  When using Redux with a component, you must use connect to export the component:
+  NOTE - Imports:
+  --------------
+  withRouter:
+    - This will allows us to pass action's redirect ability "this.props.history"
+    - MUST wrap component name in "withRouter" when exported.
+      ...(i.e. "export default withRouter(myComponent)")
 
-    export default connect(firstParam, ObjToMapActions)(myComponentName)
+  connect:
+    - In order to use Redux with a component, import "connect" from 'react-redux'.
 
-------------------------------------------------------------------------------------
+  authActions:
+    - Contains "actions" (...or functions) related to authentication.
+    - Available Actions: registerUser, loginUser, setCurrentUser, logoutUser.
 
-  Package: withRouter
+  What's a "container"?:
+    - A contianer is a react component that'll work with Redux.
+
+  Redux:
+    - The 'react-redux' package is a React component that wraps around everything and provides a store for State.
+*/
+
+/*
+  NOTE - How to use "connect()" package:
+
+    - When using Redux with a component, you must use connect to export the component:
+
+      export default connect(firstParam, ObjToMapActions)(myComponentName)
+*/
+
+/*
+  NOTE - How to use "withRouter()" package:
 
   Steps to using withRouter:
   1. Import the package:

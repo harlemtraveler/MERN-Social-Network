@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import classnames from 'classnames';
 import { loginUser } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
 
@@ -66,18 +65,18 @@ class Login extends Component {
                   placeholder="Email Address"
                   name="email"
                   type="email"
-                  value={this.state.email}
-                  onChange={this.onChange}
-                  error={errors.email}
+                  value={ this.state.email }
+                  onChange={ this.onChange }
+                  error={ errors.email }
                 />
 
                 <TextFieldGroup
                   placeholder="Password"
                   name="password"
                   type="password"
-                  value={this.state.password}
-                  onChange={this.onChange}
-                  error={errors.password}
+                  value={ this.state.password }
+                  onChange={ this.onChange }
+                  error={ errors.password }
                 />
 
                 <input
