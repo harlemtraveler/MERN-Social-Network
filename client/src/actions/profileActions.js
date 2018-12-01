@@ -36,6 +36,8 @@ export const createProfile = (profileData, history) => dispatch => {
       }))
 }
 
+// Delete account & profile
+
 // Profile loading
 export const setProfileLoading = () => {
   return {

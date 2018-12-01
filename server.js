@@ -10,7 +10,7 @@ const posts = require('./routes/api/posts');
 const app = express();
 
 // Body Parser middleware
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // DB Config
@@ -35,7 +35,7 @@ app.use('/api/posts', posts);
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => console.log(`[*] Server running on port: ${PORT} 🚦`));
+app.listen(PORT, () => console.log(`[*] Server running on port: ${ PORT } 🚦`));
 
 /*
   To check to see the host and which port MongoDB is running on locally:
