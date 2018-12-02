@@ -22,10 +22,11 @@ export const getCurrentProfile = () => dispatch => {
       dispatch({
         type: GET_PROFILE, // Can register without profile. Redirects to create profile.
         payload: {}
-      }))
-}
+      })
+    );
+};
 
-// Create Profile
+// Create & Update Profile
 export const createProfile = (profileData, history) => dispatch => {
   axios
     .post('/api/profile', profileData)
