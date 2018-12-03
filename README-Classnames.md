@@ -26,7 +26,7 @@ cd ../
 npm run dev
 ```
 
-5. Import the React Router into the _App.js_ file back within the _client_ directory.
+5. Import **Classnames** into the _App.js_ file back within the _client_ directory.
 
 ```
 import classnames from 'classnames';

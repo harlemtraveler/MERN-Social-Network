@@ -1,4 +1,4 @@
-# Intsall Axios for teh Frontend
+# Intsall Axios for the Frontend
 
 ## Follow the instructions below
 
@@ -26,7 +26,7 @@ cd ../
 npm run dev
 ```
 
-5. Import the jwt_decode into the _authActions.js_ file back within the _client_ directory.
+5. Import the **jwt_decode** into the _authActions.js_ file back within the _client_ directory.
 
 ```
 import { jwt_decode } from 'jwt-decode';

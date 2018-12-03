@@ -1,4 +1,4 @@
-# Intsall Axios for teh Frontend
+# Intsall Axios for the Frontend
 
 ## Follow the instructions below
 
@@ -26,7 +26,7 @@ cd ../
 npm run dev
 ```
 
-5. Import the React Router into the _App.js_ file back within the _client_ directory.
+5. Import the **Axios** into the _App.js_ file back within the _client_ directory.
 
 ```
 import { axios } from 'axios';
