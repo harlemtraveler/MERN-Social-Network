@@ -29,6 +29,7 @@ import EditProfile from './components/edit-profile/EditProfile';
 import AddExperience from './components/add-credentials/AddExperience';
 import AddEducation from './components/add-credentials/AddEducation';
 import Profiles from './components/profiles/Profiles';
+import Profile from './components/profile/Profile';
 
 // CSS
 import './App.css';
@@ -71,6 +72,8 @@ class App extends Component {
               <Route exact path="/register" component={ Register } />
               <Route exact path="/login" component={ Login } />
               <Route exact path="/profiles" component={ Profiles } />
+              {/* Uses "handle" prop. Ref "getProfileByHandle()" in "profileActions" */}
+              <Route exact path="/profile/:handle" component={ Profile } />
               <Switch>
                 {/* Switch used because "<PrivateRoute />" contains a "<Redirect />" */}
                 <PrivateRoute exact path="/dashboard" component={ Dashboard } />
