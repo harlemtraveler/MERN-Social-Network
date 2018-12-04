@@ -41,8 +41,11 @@ class Profile extends Component {
           </div>
           {/* Redux NOT required, just pass data from this component to sub-component */}
           <ProfileHeader profile={ profile } />
-          <ProfileAbout />
-          <ProfileCreds />
+          <ProfileAbout profile={ profile } />
+          <ProfileCreds
+            education={ profile.education }
+            experience={ profile.experience }
+          />
           <ProfileGithub />
         </div>
       )
