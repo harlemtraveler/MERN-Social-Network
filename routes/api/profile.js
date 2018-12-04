@@ -25,9 +25,9 @@ router.get('/test', (req, res) => res.json({
 router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
   const errors = {};
   Profile.findOne({ user: req.user.id })
-    // populate() fetches specific fields from Model's Schema via the "ref" name:
+    // populate() fetches specific fields from the Model's Schema via the "ref" name:
     // the promise will only return the field's "id" by default
-    // Can specify multiple fields by invoking them within a array
+    // Can specify multiple fields by invoking them within an array
     // Syntax: .populate('ref', ['field1', field2])
     .populate('user', ['name', 'avatar'])
     .then(profile => {
