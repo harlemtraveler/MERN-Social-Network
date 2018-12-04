@@ -60,11 +60,11 @@ class CreateProfile extends Component {
       // Check social accounts Object
       profile.social = !isEmpty(profile.social) ? profile.social : {};
       // Check individual social accounts (each is a string property of the social Obj.)
-      profile.social.twitter = !isEmpty(profile.social.twitter) ? profile.social.twitter : '';
-      profile.social.facebook = !isEmpty(profile.social.facebook) ? profile.social.facebook : '';
-      profile.social.linkedin = !isEmpty(profile.social.linkedin) ? profile.social.linkedin : '';
-      profile.social.youtube = !isEmpty(profile.social.youtube) ? profile.social.youtube : '';
-      profile.social.instagram = !isEmpty(profile.social.instagram) ? profile.social.instagram : '';
+      profile.twitter = !isEmpty(profile.social.twitter) ? profile.social.twitter : '';
+      profile.facebook = !isEmpty(profile.social.facebook) ? profile.social.facebook : '';
+      profile.linkedin = !isEmpty(profile.social.linkedin) ? profile.social.linkedin : '';
+      profile.youtube = !isEmpty(profile.social.youtube) ? profile.social.youtube : '';
+      profile.instagram = !isEmpty(profile.social.instagram) ? profile.social.instagram : '';
 
       // Set component fields state
       this.setState({
@@ -79,7 +79,8 @@ class CreateProfile extends Component {
         twitter: profile.twitter,
         facebook: profile.facebook,
         linkedin: profile.linkedin,
-        youtube: profile.youtube
+        youtube: profile.youtube,
+        instagram: profile.instagram
       });
     }
   }
