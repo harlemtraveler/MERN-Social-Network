@@ -157,7 +157,7 @@ export const deleteAccount = () => dispatch => {
   }
 }
 
-// Profile loading
+// Set Profile loading state
 export const setProfileLoading = () => {
   return {
     type: PROFILE_LOADING

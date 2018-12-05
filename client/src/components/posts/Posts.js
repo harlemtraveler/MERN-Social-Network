@@ -1,18 +1,41 @@
 import React, { Component } from 'react';
-import { connect } from 'react-router-dom';
+
+// Library Packages
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
+// Actions
+import { getPosts } from '../../actions/postActions';
+
+// Components
 import PostForm from './PostForm';
+import PostFeed from './PostFeed';
 import Spinner from '../common/Spinner';
 
 class Posts extends Component {
+  componentDidMount() {
+    this.props.getPosts();
+  }
 
   render() {
+    const { posts, loading } = this.props.posts;
+    let postContent;
+
+    if (posts === null || loading) {
+      postContent = <Spinner />;
+    } else {
+      if (posts.length > 0) {
+        postContent = <PostFeed posts={ posts } />;
+      }
+    }
+
     return (
       <div className="feed">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
               <PostForm />
+              { postContent }
             </div>
           </div>
         </div>
@@ -22,4 +45,13 @@ class Posts extends Component {
 
 }
 
-export default Posts;
+Posts.propTypes = {
+  getPosts: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+  post: state.post
+});
+
+export default connect(mapStateToProps, { getPosts })(Posts);

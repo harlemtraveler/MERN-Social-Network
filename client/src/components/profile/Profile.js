@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+// Library Packages
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 // Actions
