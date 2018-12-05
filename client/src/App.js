@@ -30,6 +30,7 @@ import AddExperience from './components/add-credentials/AddExperience';
 import AddEducation from './components/add-credentials/AddEducation';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
+import NotFound from './components/not-found/NotFound';
 
 // CSS
 import './App.css';
@@ -76,20 +77,41 @@ class App extends Component {
               <Route exact path="/profile/:handle" component={ Profile } />
               <Switch>
                 {/* Switch used because "<PrivateRoute />" contains a "<Redirect />" */}
-                <PrivateRoute exact path="/dashboard" component={ Dashboard } />
+                <PrivateRoute
+                  exact
+                  path="/dashboard" 
+                  component={ Dashboard }
+                />
               </Switch>
               <Switch>
-                <PrivateRoute exact path="/create-profile" component={ CreateProfile } />
+                <PrivateRoute
+                  exact
+                  path="/create-profile"
+                  component={ CreateProfile }
+                />
               </Switch>
               <Switch>
-                <PrivateRoute exact path="/edit-profile" component={ EditProfile } />
+                <PrivateRoute
+                  exact
+                  path="/edit-profile"
+                  component={ EditProfile }
+                />
               </Switch>
               <Switch>
-                <PrivateRoute exact path="/add-experience" component={ AddExperience } />
+                <PrivateRoute
+                  exact
+                  path="/add-experience"
+                  component={ AddExperience }
+                />
               </Switch>
               <Switch>
-                <PrivateRoute exact path="/add-education" component={ AddEducation } />
+                <PrivateRoute
+                  exact
+                  path="/add-education"
+                  component={ AddEducation }
+                />
               </Switch>
+              <Route exact path="/not-found" component={ NotFound } />
             </div>
             <Footer />
           </div>
