@@ -7,7 +7,9 @@ class ProfileGithub extends Component {
     super(props);
 
     this.state = {
+      // Initialize with your Github API user ID
       clientId: '',
+      // Initialize with your Github API user Secret Key
       clientSecret: '',
       count: 5,
       sort: 'created: asc',
