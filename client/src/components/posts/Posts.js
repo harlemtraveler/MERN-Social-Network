@@ -18,15 +18,13 @@ class Posts extends Component {
   }
 
   render() {
-    const { posts, loading } = this.props.posts;
+    const { posts, loading } = this.props.post;
     let postContent;
 
     if (posts === null || loading) {
       postContent = <Spinner />;
     } else {
-      if (posts.length > 0) {
-        postContent = <PostFeed posts={ posts } />;
-      }
+      postContent = <PostFeed posts={ posts } />;
     }
 
     return (
