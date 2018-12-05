@@ -1,8 +1,7 @@
----
-Title: MERN Social Media Application
-Author: Mr. Robot
-Date: December 4, 2018
----
+[_metadata_:title]:- "MERN Social Media Application"
+[_metadata_:author]:- "Mr. Robot"
+[_metadata_:date]:- "December 4, 2018"
+
 
 # MERN Social Media Application
 
@@ -16,12 +15,12 @@ This project was created with the guidance of a tutorial, which will be linked t
 
 ### Tutorial
 **Course:** [MERN Stack Front To Back: Full Stack React, Redux & Node.js](https://www.udemy.com/mern-stack-front-to-back "A Udemy Course")
-**Instructor:** Brad Traversy
-**Duration:** 16.5 hours on-demand video
-**Skill level:** Intermediate Level
-**Students:** 13,224
-**Languages:** English
-**Lectures:** 78
+* **Instructor:** Brad Traversy
+* **Duration:** 16.5 hours on-demand video
+* **Skill level:** Intermediate Level
+* **Students:** 13,224
+* **Languages:** English
+* **Lectures:** 78
 
 ### Personal Project
 **__COMING SOON!__**
@@ -168,7 +167,7 @@ We use [Git](http://git-scm.org/) for versioning. For the versions available, se
 
 ## Authors
 
-* **Timothy Keaveny** - *Initial work* - [PurpleBooth](https://github.com/harlemtraveler/MERN-Social-Network)
+* **Timothy Keaveny** - *Initial work* - [MERN Social Media App](https://github.com/harlemtraveler/MERN-Social-Network)
 
 See also the list of [contributors](https://github.com/harlemtraveler/MERN-Social-Network/contributors) who participated in this project.
 
