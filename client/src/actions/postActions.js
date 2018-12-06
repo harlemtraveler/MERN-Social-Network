@@ -27,7 +27,7 @@ export const addPost = postData => dispatch => {
   );
 }
 
-// Get Post
+// Get Posts
 export const getPosts = () => dispatch => {
   dispatch(setPostLoading());
   axios
@@ -41,6 +41,25 @@ export const getPosts = () => dispatch => {
   .catch(err =>
     dispatch({
       type: GET_POSTS,
+      payload: null
+    })
+  );
+}
+
+// Get Post
+export const getPost = (id) => dispatch => {
+  dispatch(setPostLoading());
+  axios
+  .get(`/api/posts/${id}`)
+  .then(res =>
+    dispatch ({
+      type: GET_POST,
+      payload: res.data
+    })
+  )
+  .catch(err =>
+    dispatch({
+      type: GET_POST,
       payload: null
     })
   );

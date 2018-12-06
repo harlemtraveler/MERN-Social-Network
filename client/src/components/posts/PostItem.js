@@ -32,7 +32,8 @@ class PostItem extends Component {
   }
 
   render() {
-    const { post, auth } = this.props;
+    // showActions is passed in as either true or false
+    const { post, auth, showActions } = this.props;
 
     return (
       <div className="card card-body mb-3">
@@ -53,51 +54,61 @@ class PostItem extends Component {
               { post.text }
             </p>
 
-            <button
-              // NOTE: May be able to remove "bind" by use of arrow func in onDeleteClick
-              onClick={ this.onLikeClick.bind(this, post._id) }
-              type="button"
-              className="btn btn-light mr-1">
-              <i className={ classnames('fas fa-thumbs-up', {
-                'text-info': this.findUserLike(post.likes)
-              }) } />
-              <span className="badge badge-light">
-                { post.likes.length }
-              </span>
-            </button>
-
-            <button
-              // NOTE: May be able to remove "bind" by use of arrow func in onDeleteClick
-              onClick={ this.onUnlikeClick.bind(this, post._id) }
-              type="button"
-              className="btn btn-light mr-1">
-              <i className="text-secondary fas fa-thumbs-down" />
-            </button>
-
-            <Link
-              to={ `/post/${post._id}` }
-              className="btn btn-info mr-1">
-              Comments
-            </Link>
-
-            {/* Delete button for authenticated user's posts */}
-            {
-              post.user === auth.user.id ? (
+            {/* "showActions" ternery determines if content below is displayed or not */}
+            { showActions ? (<span>
               <button
                 // NOTE: May be able to remove "bind" by use of arrow func in onDeleteClick
-                onClick={ this.onDeleteClick.bind(this, post._id) }
+                onClick={ this.onLikeClick.bind(this, post._id) }
                 type="button"
-                className="byn btn-danger mr-1">
-                  <i className="fas fa-times" />
-                </button>
-              ) : null
-            }
+                className="btn btn-light mr-1">
+                <i className={ classnames('fas fa-thumbs-up', {
+                  'text-info': this.findUserLike(post.likes)
+                }) } />
+                <span className="badge badge-light">
+                  { post.likes.length }
+                </span>
+              </button>
+
+              <button
+                // NOTE: May be able to remove "bind" by use of arrow func in onDeleteClick
+                onClick={ this.onUnlikeClick.bind(this, post._id) }
+                type="button"
+                className="btn btn-light mr-1">
+                <i className="text-secondary fas fa-thumbs-down" />
+              </button>
+
+              <Link
+                to={ `/post/${post._id}` }
+                className="btn btn-info mr-1">
+                Comments
+              </Link>
+
+              {/* Delete button for authenticated user's posts */}
+              {
+                post.user === auth.user.id ? (
+                <button
+                  // NOTE: May be able to remove "bind" by use of arrow func in onDeleteClick
+                  onClick={ this.onDeleteClick.bind(this, post._id) }
+                  type="button"
+                  className="byn btn-danger mr-1">
+                    <i className="fas fa-times" />
+                  </button>
+                ) : null
+              }
+
+            </span>) : null }
+
           </div>
         </div>
       </div>
     );
   }
 
+}
+
+// Set "showActions" to true so above content is displayed
+PostItem.defaultProps = {
+  showActions: true
 }
 
 PostItem.propTypes = {
