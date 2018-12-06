@@ -90,7 +90,7 @@ class PostItem extends Component {
                   // NOTE: May be able to remove "bind" by use of arrow func in onDeleteClick
                   onClick={ this.onDeleteClick.bind(this, post._id) }
                   type="button"
-                  className="byn btn-danger mr-1">
+                  className="btn btn-danger mr-1">
                     <i className="fas fa-times" />
                   </button>
                 ) : null
