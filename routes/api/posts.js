@@ -157,8 +157,8 @@ router.post('/comment/:id', passport.authenticate('jwt', { session: false }), (r
         text: req.body.text,
         name: req.body.name,
         avatar: req.body.avatar,
-        user: req.body.name
-      }
+        user: req.body.id
+      };
 
       // Add to comments array
       post.comments.unshift(newComment);
