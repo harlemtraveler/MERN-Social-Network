@@ -22,7 +22,7 @@ class ProfileGithub extends Component {
       .then(data => {
         if (this.refs.myRef) {
           this.setState({ repos: data });
-          console.log(data);
+          // console.log(data);  <--Test data import
         }
       })
       .catch(err => console.log(err));

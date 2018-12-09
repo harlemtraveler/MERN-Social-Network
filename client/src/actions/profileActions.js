@@ -18,7 +18,8 @@ export const getCurrentProfile = () => dispatch => {
       dispatch({
         type: GET_PROFILE,
         payload: res.data
-      }))
+      })
+    )
     .catch(err =>
       dispatch({
         type: GET_PROFILE, // Can register without profile. Redirects to create profile.
