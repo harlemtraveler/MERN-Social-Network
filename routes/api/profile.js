@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
+const axios = require('axios');
 
 // Load Validation - Profile | Experience
 const validateProfileInput = require('../../validation/profile');
@@ -90,6 +91,26 @@ router.get('/user/:user_id', (req, res) => {
     })
     .catch(err => res.status(404).json({ profile: '[!] There is no profile for this user' }));
 });
+
+// @routes GET api/profile/github/:username/:count/:sort
+// @desc   Get github data from github api
+// @access Public
+router.get('/github/:username/:count/:sort', (req, res) => {
+  username = req.params.username;
+  clientId = process.env.CLIENT_ID;
+  clientSecret = process.env.CLIENT_SECRET;
+  count = req.params.count;
+  sort = req.params.sort;
+  let repos;
+  axios
+    .get(`https://api.github.com/users/${username}/repos?per_page=${count}&sort=${sort}&client_id=${clientId}&client_secret=${clientSecret}`)
+    .then(info => {
+      repos = info.data;
+      res.json(repos);
+    })
+    .catch(err => res.status(404).json({ info: '[!] Cannot find repos for this user' }));
+});
+
 
 // @routes POST api/profile
 // @desc   Create OR Edit user profile

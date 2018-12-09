@@ -7,10 +7,6 @@ class ProfileGithub extends Component {
     super(props);
 
     this.state = {
-      // Initialize with your Github API user ID
-      clientId: '',
-      // Initialize with your Github API user Secret Key
-      clientSecret: '',
       count: 5,
       sort: 'created: asc',
       repos:[]
@@ -19,15 +15,14 @@ class ProfileGithub extends Component {
 
   componentDidMount() {
     const { username } = this.props;
-    const { count, sort, clientId, clientSecret } = this.state;
+    const { count, sort, repos } = this.state;
 
-    fetch(
-      `https://api.github.com/users/${username}/repos?per_page=${count}&sort=${sort}&client_id=${clientId}&client_secret=${clientSecret}`
-    )
+    fetch(`/api/profile/github/${username}/${count}/${sort}`)
       .then(res => res.json())
       .then(data => {
         if (this.refs.myRef) {
           this.setState({ repos: data });
+          console.log(data);
         }
       })
       .catch(err => console.log(err));
@@ -35,7 +30,6 @@ class ProfileGithub extends Component {
 
   render() {
     const { repos } = this.state;
-
     const repoItems = repos.map(repo => (
       <div key={ repo.id } className="card card-body mb-2">
         <div className="row">
