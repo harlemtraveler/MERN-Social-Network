@@ -84,13 +84,13 @@ Navigate to the root of the application:
 cd MERN-Social-Network
 ```
 
-Within the root of the application, inside of the __/config__ folder, create a file named __keys_dev.js__ to hold the **MongoDB URI** and **secretOrKey** variables that will be used to connect to a MongoDB database (the path of the newly created file should be: __/config/keys_dev.js__):
+Within the root of the application, inside of the */config* folder, create a file named *keys_dev.js* to hold the **MongoDB URI** and **secretOrKey** variables that will be used to connect to a MongoDB database (the path of the newly created file should be: */config/keys_dev.js*):
 
 ```
 touch /config/keys_dev.js
 ```
 
-Now, enter the following code inside of the __keys_dev.js__ file. You can use __localhost__ to reference your personal device, or link to a database from a cloud provider such as [mLab](https://mlab.com). For this example, I'm linking to a [Mongo Community Edition](https://docs.mongodb.com/manual/administration/install-community/) database hosted locally on my device through __localhost:27017__ (In the code below, replace <username> and <password> with your credentials for the corresponding database. Replace <secret-key-string> with any string of your choice):
+Now, enter the following code inside of the *keys_dev.js* file. You can use *localhost* to reference your personal device, or link to a database from a cloud provider such as [mLab](https://mlab.com). For this example, I'm linking to a [Mongo Community Edition](https://docs.mongodb.com/manual/administration/install-community/) database hosted locally on my device through *localhost:27017* (In the code below, replace <username> and <password> with your credentials for the corresponding database. Replace <secret-key-string> with any string of your choice):
 
 ```
 module.exports = {
@@ -99,13 +99,13 @@ module.exports = {
 };
 ```
 
-In the root of the project, create a __.env__ file to hold the applications __Environment Variables__. This is a secure place to store sensitive data such as API keys, passwords, etc. For us, we'll use it to store our Github API Key, Github Secret, MongoDB URI, and Node's __secretOrKey__ value:
+In the root of the project, create a *.env* file to hold the applications *Environment Variables*. This is a secure place to store sensitive data such as API keys, passwords, etc. For us, we'll use it to store our Github API Key, Github Secret, MongoDB URI, and Node's *secretOrKey* value:
 
 ```
 touch .env
 ```
 
-Now enter the following code into the newly created __.env__ file (Replacing the values within the angle brackets "< >" with your own values):
+Now enter the following code into the newly created *.env* file (Replacing the values within the angle brackets "< >" with your own values):
 
 ```
 CLIENT_ID: "<github-api-client-id>",
@@ -114,12 +114,13 @@ MONGO_URI: "<mongodb-uri-path-with-username-&-password>",
 SECRET_OR_KEY: "<your-application-secretOrKey-value>"
 ```
 
-**!IMPORTANT!**
-Add the path of the __.env__ file to your __.gitignore__ file. The contents of the __.gitignore__ file are prevented from being committed to a __Git__ repository. You do **NOT** want to have your passwords and other sensitive data publicly available on a service such as Github for the entire world to see! With this in mind, we'll also add the path to the __keys_dev.js__ file in __.gitignore__ as well (It contains your DB username and password).
+**IMPORTANT**
 
-The __.gitignore__ file should already exist in your project if it's in a active Git repository. The contents of the file should be the path to the __node_modules__ folder.
+Add the path of the *.env* file to your *.gitignore* file. The contents of the *.gitignore* file are prevented from being committed to a *Git* repository. You do **NOT** want to have your passwords and other sensitive data publicly available on a service such as Github for the entire world to see! With this in mind, we'll also add the path to the *keys_dev.js* file in *.gitignore* as well (It contains your DB username and password).
 
-Add the path of the __.env__ and __keys_dev.js__ files to __.gitignore__:
+The *.gitignore* file should already exist in your project if it's in a active Git repository. The contents of the file should be the path to the *node_modules* folder.
+
+Add the path of the *.env* and *keys_dev.js* files to *.gitignore*:
 
 ```
 .env
@@ -202,19 +203,28 @@ Test the application by registering in the app, logging in, creating a profile, 
 
 ## Security Issues
 
+
+**Purpose**
+
 This project is not meant to be a production application as is, but rather an educational project meant to help learn the basics of creating a social media app using the MERN stack. With that being said, there are some severe vulnerabilities with the how the application was developed. What is listed below does not represent all vulnerabilities, but the list will be continually updated. Please feel free to contact me to resolve any issues you come across (The API keys, links to database, etc within this project's commits are no longer active).
 
-**Exposed Keys** - __[commit: 9970008bad4f42021c5923a83da3ed14f2ae950b]__
-The database URI that contains the database username and password was committed to the Git repository. As mentioned in the installation instructions, you MUST secure this data from being made publicly available. Although the __keys_dev.js__ file path was recommended to be placed in the __.gitignore__ file, we initially created the __keys.js__ file to hold this information (This was done for instructional purposes). I recommend add the __/config/keys.js__ path to the __.gitignore__ file before you even make your first commit.
 
-**Exposed Github API Credentials** __[commit: 73d50e4b02e08969845bfaee1a398e43c9852998]__
+**Exposed Keys** - *[commit: 9970008bad4f42021c5923a83da3ed14f2ae950b]*
+
+The database URI that contains the database username and password was committed to the Git repository. As mentioned in the installation instructions, you MUST secure this data from being made publicly available. Although the *keys_dev.js* file path was recommended to be placed in the *.gitignore* file, we initially created the *keys.js* file to hold this information (This was done for instructional purposes). I recommend add the */config/keys.js* path to the *.gitignore* file before you even make your first commit.
+
+
+**Exposed Github API Credentials** *[commit: 73d50e4b02e08969845bfaee1a398e43c9852998]*
+
 Similar to the vulnerability above, we are exposing sensitive data by placing the API credentials directly in the React component that is responsible for fetching the first five repositories from your Github account. This problem indicates an issue with application architecture.
 
 Just hiding the credentials from the Git repository is not the solution. The reason being is because when a user loads a profile, the API credentials are available in React/Redux State, in plaintext for anyone to see. To properly resolve this issue, we must move the API call to the backend server and have the React frontend fetch the data from the server.
 
 You can see how I resolved this by referencing the changes made [here](https://github.com/harlemtraveler/MERN-Social-Network/commit/a3219785cfae38d274553bd185defbd0eb73468a) in [commit: a3219785cfae38d274553bd185defbd0eb73468a].
 
+
 **More To Follow**
+
 Additional security vulnerabilities are going to be published here over time. Time is going to be set aside time every month to review and Pen Test this project to help users identify potential issues when constructing a social media application of their own. As always, please reach out if there are any potential problems you come across. All help is welcome. The goal is to help developers produce quality products that keep users safe.
 
 ## Contributing
