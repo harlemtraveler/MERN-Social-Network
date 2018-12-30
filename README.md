@@ -13,6 +13,10 @@ Authentication is integrated into the app, but what makes this feature stand out
 
 This project was created with the guidance of a tutorial, which will be linked to below. The purpose of this project is to provide a refresher on the MERN stack, which is one of my personal favorites. However, I'll be using the architecture employed here to create a particular project of my own. Once this personal project is complete, it will be listed below for anyone to take a look.
 
+### Demo
+
+[MERN Social Media Application](https://pacific-hamlet-33434.herokuapp.com/)
+
 ### Tutorial
 **Course:** [MERN Stack Front To Back: Full Stack React, Redux & Node.js](https://www.udemy.com/mern-stack-front-to-back "A Udemy Course")
 * **Instructor:** Brad Traversy
